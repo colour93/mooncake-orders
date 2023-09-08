@@ -22,7 +22,8 @@ import {
   Select,
 } from "@douyinfe/semi-ui";
 import Section from "@douyinfe/semi-ui/lib/es/form/section";
-import { Dispatch, SetStateAction, useState } from "react";
+import Numeral from "@douyinfe/semi-ui/lib/es/typography/numeral";
+import { Dispatch, SetStateAction, useEffect, useState } from "react";
 
 interface MooncakeType {
   typeId: number;
@@ -131,7 +132,7 @@ const MooncakeCard: React.FC<MooncakeCardProps> = ({
             }}
           >
             {mooncakeMouldSeries.map(({ seriesId, seriesName, moulds }) => (
-              <Select.OptGroup key={seriesId} label={seriesName}>
+              <Select.OptGroup label={seriesName}>
                 {moulds.map(({ mouldId, mouldName }) => (
                   <Select.Option key={mouldId} value={mouldId}>
                     {mouldName}
@@ -300,10 +301,38 @@ export default function OrderSignup() {
     },
   ]);
 
-  const updateMooncakeInfo = (mooncakeInfo: MooncakeInfo, index: number) => {
+  const updateMooncakeGroup = (mooncakeInfo: MooncakeInfo, index: number) => {
     let originMooncakeGroup = mooncakeGroup.slice();
     originMooncakeGroup[index] = mooncakeInfo;
     setMooncakeGroup(originMooncakeGroup);
+  };
+
+  const [accessKey, setAccessKey] = useState("");
+  const [deliveryName, setDeliveryName] = useState("");
+  const [deliveryPhone, setDeliveryPhone] = useState(0);
+  const [deliveryAddress, setDeliveryAddress] = useState("");
+
+  const [freight, setFreight] = useState(0);
+  const [cost, setCost] = useState(freight + 3);
+
+  const [email, setEmail] = useState("");
+  const [otp, setOtp] = useState("");
+
+  useEffect(() => {
+    setCost(freight + 3);
+  }, [freight]);
+
+  const currencyParser = (oldVal: string) => {
+    return oldVal
+      .split(" ")
+      .map((item) =>
+        Number(item) || Number(item) === 0
+          ? `￥${Number(item)
+              .toFixed(2)
+              .replace(/\d(?=(\d{3})+\.)/g, "$&,")}`
+          : item
+      )
+      .join(" ");
   };
 
   return (
@@ -319,9 +348,10 @@ export default function OrderSignup() {
         <CardGroup>
           {mooncakeGroup.map((mooncakeInfo, idx) => (
             <MooncakeCard
+              key={idx}
               index={idx}
               mooncakeInfo={mooncakeInfo}
-              updateMooncakeInfo={updateMooncakeInfo}
+              updateMooncakeInfo={updateMooncakeGroup}
               mooncakeTypes={mooncakeTypes}
               mooncakeMoulds={mooncakeMoulds}
             />
@@ -331,33 +361,37 @@ export default function OrderSignup() {
 
       <Section text="注册密钥" className="my-2">
         <Form.Input
-          field="accessCode"
+          field="accessKey"
           label="注册密钥"
           prefix={<IconKey />}
           placeholder="如果你能看见这句话请联系玖叁捏"
+          onChange={setAccessKey}
         />
       </Section>
 
       <Section text="收货信息" className="my-2">
         <Form.Input
-          field="username"
+          field="deliveryName"
           label="收货人姓名"
           prefix={<IconIdentity />}
           placeholder="酒酸"
           helpText="建议为昵称"
+          onChange={setDeliveryName}
         />
         <Form.Input
-          field="phone"
+          field="deliveryPhone"
           label="收货人手机号"
           prefix={<IconUserCardPhone />}
           placeholder="110"
           type="tel"
+          onChange={(v) => setDeliveryPhone(Number(v))}
         />
         <Form.TextArea
-          field="address"
+          field="deliveryAddress"
           label="收货人地址"
           placeholder="北京市东城区长安街北侧"
           showClear
+          onChange={setDeliveryAddress}
         />
       </Section>
 
@@ -370,9 +404,15 @@ export default function OrderSignup() {
           description="仅供参考，实际请询问玖叁"
         />
         <Descriptions align="justify" className="flex justify-center">
-          <Descriptions.Item itemKey="包装费">￥3.00</Descriptions.Item>
-          <Descriptions.Item itemKey="运费">约￥19.00</Descriptions.Item>
-          <Descriptions.Item itemKey="合计">约￥22.00</Descriptions.Item>
+          <Descriptions.Item itemKey="包装费">
+            <Numeral parser={currencyParser}>{3}</Numeral>
+          </Descriptions.Item>
+          <Descriptions.Item itemKey="运费">
+            <Numeral parser={currencyParser}>{freight}</Numeral>
+          </Descriptions.Item>
+          <Descriptions.Item itemKey="合计">
+            <Numeral parser={currencyParser}>{cost}</Numeral>
+          </Descriptions.Item>
         </Descriptions>
       </Section>
 
@@ -409,6 +449,7 @@ export default function OrderSignup() {
               发送验证码
             </div>
           }
+          onChange={setEmail}
         />
         <Form.Input
           field="otp"
@@ -417,8 +458,13 @@ export default function OrderSignup() {
           placeholder="114514"
           type="number"
           maxLength={6}
+          onChange={setOtp}
         />
       </Section>
+
+      <Button theme="solid" type="primary" block size="large">
+        提交
+      </Button>
     </Form>
   );
 }
