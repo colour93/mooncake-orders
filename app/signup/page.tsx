@@ -16,14 +16,12 @@ import {
   Form,
   Highlight,
   InputGroup,
-  Popconfirm,
   Popover,
-  Rating,
   Select,
 } from "@douyinfe/semi-ui";
 import Section from "@douyinfe/semi-ui/lib/es/form/section";
 import Numeral from "@douyinfe/semi-ui/lib/es/typography/numeral";
-import { Dispatch, SetStateAction, useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 
 interface MooncakeType {
   typeId: number;
@@ -113,8 +111,8 @@ const MooncakeCard: React.FC<MooncakeCardProps> = ({
               updateMooncakeInfo(mooncakeInfo, index);
             }}
           >
-            {mooncakeTypes.map(({ typeId, typeName }) => (
-              <Select.Option key={typeId} value={typeId}>
+            {mooncakeTypes.map(({ typeId, typeName }, idx) => (
+              <Select.Option key={idx} value={typeId}>
                 {typeName}
               </Select.Option>
             ))}
@@ -131,10 +129,10 @@ const MooncakeCard: React.FC<MooncakeCardProps> = ({
               updateMooncakeInfo(mooncakeInfo, index);
             }}
           >
-            {mooncakeMouldSeries.map(({ seriesId, seriesName, moulds }) => (
-              <Select.OptGroup label={seriesName}>
-                {moulds.map(({ mouldId, mouldName }) => (
-                  <Select.Option key={mouldId} value={mouldId}>
+            {mooncakeMouldSeries.map(({ seriesId, seriesName, moulds }, idx) => (
+              <Select.OptGroup key={idx} label={seriesName}>
+                {moulds.map(({ mouldId, mouldName }, idx) => (
+                  <Select.Option key={idx} value={mouldId}>
                     {mouldName}
                   </Select.Option>
                 ))}
@@ -169,7 +167,7 @@ const MooncakeCard: React.FC<MooncakeCardProps> = ({
   );
 };
 
-export default function OrderSignup() {
+export default function Signup() {
   const [mooncakeTypes, setMooncakeTypes] = useState([
     {
       typeId: 1,
@@ -416,12 +414,26 @@ export default function OrderSignup() {
         </Descriptions>
       </Section>
 
-      <Section text="账号信息" className="my-2">
+      <Section text="账号信息" className="relative my-2">
         <Form.Input
+          className="relative"
           field="email"
           label="账号邮箱"
           prefix={<IconMail />}
           placeholder="1919810@gmail.com"
+          suffix={
+            <div
+              className="w-20"
+              style={{
+                color: "var(--semi-color-link)",
+                fontSize: 14,
+                userSelect: "none",
+                cursor: "pointer",
+              }}
+            >
+              发送验证码
+            </div>
+          }
           helpText={
             <Highlight
               sourceString="用于接收订单状态推送与账号登录"
@@ -436,18 +448,6 @@ export default function OrderSignup() {
                 color: "rgba(var(--semi-white), 1)",
               }}
             />
-          }
-          extraText={
-            <div
-              style={{
-                color: "var(--semi-color-link)",
-                fontSize: 14,
-                userSelect: "none",
-                cursor: "pointer",
-              }}
-            >
-              发送验证码
-            </div>
           }
           onChange={setEmail}
         />
