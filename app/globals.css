@@ -2,3 +2,8 @@
 @tailwind components;
 @tailwind utilities;
 @import '~@douyinfe/semi-ui/dist/css/semi.min.css';
+
+body {
+  color: var(--semi-color-text-0);
+  background-color: var( --semi-color-bg-0);
+}
