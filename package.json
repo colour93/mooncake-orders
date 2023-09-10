@@ -1,7 +1,8 @@
 {
   "name": "mooncake-orders",
+  "description": "月饼订单系统",
   "version": "0.1.0",
-  "private": true,
+  "private": false,
   "scripts": {
     "dev": "next dev",
     "build": "next build",
