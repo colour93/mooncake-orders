@@ -1,14 +1,9 @@
 "use client";
 
-import {
-  Avatar,
-  Button,
-  Card,
-  CardGroup,
-  Divider,
-  Steps,
-} from "@douyinfe/semi-ui";
-import React from "react";
+import { UserHeaderContext } from "@/contexts/UserHeaderContext";
+import { Button, Card, CardGroup, Steps } from "@douyinfe/semi-ui";
+import Head from "next/head";
+import React, { useContext } from "react";
 
 interface OrderCardProps {
   created: number;
@@ -53,7 +48,11 @@ const OrderCard: React.FC<OrderCardProps> = ({
             最后更新于 {new Date(updated).toLocaleString()}
           </span>
           <>
-            {deliveryId && <Button type="primary" className="mr-2">复制运单号</Button>}
+            {deliveryId && (
+              <Button type="primary" className="mr-2">
+                复制运单号
+              </Button>
+            )}
             <Button theme="solid" type="primary">
               详情
             </Button>
@@ -76,7 +75,13 @@ const OrderCard: React.FC<OrderCardProps> = ({
   );
 };
 
-export default function Order() {
+export default function OrderPage() {
+  const title = "玖叁 的月饼订单";
+
+  const { setHeader } = useContext(UserHeaderContext);
+
+  setHeader && setHeader(title);
+
   const stepsTemplate = [
     {
       title: "已创建",
@@ -106,12 +111,9 @@ export default function Order() {
 
   return (
     <>
-      <header className="p-4 shadow-sm bg-white">
-        <span>
-          <span className="ml-4 my-4 mr-2 font-bold text-xl">玖叁</span>
-          的月饼订单
-        </span>
-      </header>
+      <Head>
+        <title>{title}</title>
+      </Head>
       <div className="p-6 flex flex-col bg-gray-100 h-[calc(100vh-60px)]">
         <CardGroup className="w-full">
           <OrderCard
