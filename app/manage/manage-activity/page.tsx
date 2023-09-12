@@ -1,13 +1,12 @@
 "use client";
 
-import { ActivityInfo, ActivityStatus } from "@/types/Activity";
-import { IconDelete, IconEdit, IconMore } from "@douyinfe/semi-icons";
 import {
-  Button,
-  ButtonGroup,
-  Table,
-  Typography,
-} from "@douyinfe/semi-ui";
+  ActivityInfo,
+  ActivityInfoFormatted,
+  ActivityStatus,
+} from "@/types/Activity";
+import { IconDelete, IconEdit, IconMore } from "@douyinfe/semi-icons";
+import { Button, ButtonGroup, Table, Typography } from "@douyinfe/semi-ui";
 
 export default function ManageActivityPage() {
   const { Title } = Typography;
@@ -26,28 +25,8 @@ export default function ManageActivityPage() {
     },
     {
       title: "状态",
-      dataIndex: "status",
-      render: (text: number) => {
-        let content = "";
-        switch (text) {
-          case ActivityStatus.NOT_STARTED:
-            content = "未开始";
-            break;
-
-          case ActivityStatus.IN_PROGRESS:
-            content = "进行中";
-            break;
-
-          case ActivityStatus.FINISHED:
-            content = "已截止";
-            break;
-
-          default:
-            content = "未知状态";
-            break;
-        }
-        return content;
-      },
+      dataIndex: "statusString",
+      // render: (text: number) => {},
     },
     {
       title: "订单数",
@@ -55,13 +34,13 @@ export default function ManageActivityPage() {
     },
     {
       title: "开始时间",
-      dataIndex: "startTime",
-      render: (text: number) => new Date(text).toLocaleString(),
+      dataIndex: "startTimeString",
+      // render: (text: number) => new Date(text).toLocaleString(),
     },
     {
       title: "截至时间",
-      dataIndex: "upToTime",
-      render: (text: number) => new Date(text).toLocaleString(),
+      dataIndex: "upToTimeString",
+      // render: (text: number) => new Date(text).toLocaleString(),
     },
     {
       title: "操作",
@@ -83,6 +62,14 @@ export default function ManageActivityPage() {
       startTime: 1694488000095,
       upToTime: 1694488519598,
     },
+    {
+      id: 2,
+      name: "2022中秋",
+      status: 3,
+      orderCount: 3,
+      startTime: 1654488000095,
+      upToTime: 1654488519598,
+    },
   ];
   return (
     <>
@@ -92,7 +79,10 @@ export default function ManageActivityPage() {
           新增
         </Button>
       </div>
-      <Table columns={columns} dataSource={data} />
+      <Table
+        columns={columns}
+        dataSource={data.map((v) => new ActivityInfoFormatted(v))}
+      />
     </>
   );
 }

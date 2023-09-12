@@ -57,72 +57,96 @@ export default function SignupPage() {
     {
       mouldId: 1,
       mouldName: "花",
+      mouldImage:
+        "https://lf3-static.bytednsdoc.com/obj/eden-cn/ptlz_zlp/ljhwZthlaukjlkulzlp/root-web-sites/card-cover-docs-demo.jpeg",
       seriesId: 1,
       seriesName: "花好月圆",
     },
     {
       mouldId: 2,
       mouldName: "好",
+      mouldImage:
+        "https://lf3-static.bytednsdoc.com/obj/eden-cn/ptlz_zlp/ljhwZthlaukjlkulzlp/root-web-sites/card-cover-docs-demo.jpeg",
       seriesId: 1,
       seriesName: "花好月圆",
     },
     {
       mouldId: 3,
       mouldName: "月",
+      mouldImage:
+        "https://lf3-static.bytednsdoc.com/obj/eden-cn/ptlz_zlp/ljhwZthlaukjlkulzlp/root-web-sites/card-cover-docs-demo.jpeg",
       seriesId: 1,
       seriesName: "花好月圆",
     },
     {
       mouldId: 4,
       mouldName: "圆",
+      mouldImage:
+        "https://lf3-static.bytednsdoc.com/obj/eden-cn/ptlz_zlp/ljhwZthlaukjlkulzlp/root-web-sites/card-cover-docs-demo.jpeg",
       seriesId: 1,
       seriesName: "花好月圆",
     },
     {
       mouldId: 5,
       mouldName: "雄狮1",
+      mouldImage:
+        "https://lf3-static.bytednsdoc.com/obj/eden-cn/ptlz_zlp/ljhwZthlaukjlkulzlp/root-web-sites/card-cover-docs-demo.jpeg",
       seriesId: 2,
       seriesName: "万狮如意",
     },
     {
       mouldId: 6,
       mouldName: "雄狮2",
+      mouldImage:
+        "https://lf3-static.bytednsdoc.com/obj/eden-cn/ptlz_zlp/ljhwZthlaukjlkulzlp/root-web-sites/card-cover-docs-demo.jpeg",
       seriesId: 2,
       seriesName: "万狮如意",
     },
     {
       mouldId: 7,
       mouldName: "如意1",
+      mouldImage:
+        "https://lf3-static.bytednsdoc.com/obj/eden-cn/ptlz_zlp/ljhwZthlaukjlkulzlp/root-web-sites/card-cover-docs-demo.jpeg",
       seriesId: 2,
       seriesName: "万狮如意",
     },
     {
       mouldId: 8,
       mouldName: "如意2",
+      mouldImage:
+        "https://lf3-static.bytednsdoc.com/obj/eden-cn/ptlz_zlp/ljhwZthlaukjlkulzlp/root-web-sites/card-cover-docs-demo.jpeg",
       seriesId: 2,
       seriesName: "万狮如意",
     },
     {
       mouldId: 9,
       mouldName: "樱花1",
+      mouldImage:
+        "https://lf3-static.bytednsdoc.com/obj/eden-cn/ptlz_zlp/ljhwZthlaukjlkulzlp/root-web-sites/card-cover-docs-demo.jpeg",
       seriesId: 3,
       seriesName: "樱花",
     },
     {
       mouldId: 10,
       mouldName: "樱花2",
+      mouldImage:
+        "https://lf3-static.bytednsdoc.com/obj/eden-cn/ptlz_zlp/ljhwZthlaukjlkulzlp/root-web-sites/card-cover-docs-demo.jpeg",
       seriesId: 3,
       seriesName: "樱花",
     },
     {
       mouldId: 11,
       mouldName: "樱花3",
+      mouldImage:
+        "https://lf3-static.bytednsdoc.com/obj/eden-cn/ptlz_zlp/ljhwZthlaukjlkulzlp/root-web-sites/card-cover-docs-demo.jpeg",
       seriesId: 3,
       seriesName: "樱花",
     },
     {
       mouldId: 12,
       mouldName: "樱花4",
+      mouldImage:
+        "https://lf3-static.bytednsdoc.com/obj/eden-cn/ptlz_zlp/ljhwZthlaukjlkulzlp/root-web-sites/card-cover-docs-demo.jpeg",
       seriesId: 3,
       seriesName: "樱花",
     },

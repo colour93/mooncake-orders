@@ -6,6 +6,7 @@ export interface MooncakeType {
 export interface MooncakeMould {
   mouldId: number;
   mouldName: string;
+  mouldImage: string;
   seriesId: number;
   seriesName: string;
 }

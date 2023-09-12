@@ -108,8 +108,10 @@ const MooncakeCard: React.FC<MooncakeCardProps> = ({
         shadows="hover"
         cover={
           <img
-            alt="example"
-            src="https://lf3-static.bytednsdoc.com/obj/eden-cn/ptlz_zlp/ljhwZthlaukjlkulzlp/root-web-sites/card-cover-docs-demo.jpeg"
+            alt={mooncakeMoulds.find((item) => item.mouldId === mouldId)
+              ?.mouldName ?? "模具"}
+            src={mooncakeMoulds.find((item) => item.mouldId === mouldId)
+              ?.mouldImage}
           />
         }
       >
