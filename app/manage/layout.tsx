@@ -12,6 +12,7 @@ export default function ManageLayout({
   return (
     <>
       <Nav
+        className="h-16"
         mode={"horizontal"}
         header={{
           text: "玖叁月饼订单系统",
@@ -35,7 +36,7 @@ export default function ManageLayout({
         }
       />
       <Nav
-      className="float-left"
+        className="float-left h-[calc(100vh-4rem)]"
         defaultOpenKeys={["manage-side", "user-side"]}
         defaultSelectedKeys={["overview"]}
         footer={{
@@ -45,7 +46,6 @@ export default function ManageLayout({
           return (
             <Link
               style={{ textDecoration: "none" }}
-              // href={"/manage"}
               href={`/manage/${props.itemKey}`}
             >
               {itemElement}
@@ -97,8 +97,8 @@ export default function ManageLayout({
             ],
           },
         ]}
-      />
-      {children}
+      ></Nav>
+      <div className="flex flex-col p-6">{children}</div>
     </>
   );
 }
