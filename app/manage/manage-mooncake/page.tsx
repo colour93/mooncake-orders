@@ -91,8 +91,8 @@ const ActivityTag: React.FC<{ activityInfo: ActivityInfo }> = ({
   );
 };
 
-export default function ManageMooncakePage() {
-  const { Title, Text } = Typography;
+const TypeTable: React.FC = () => {
+  const { Text } = Typography;
 
   const typeColumns = [
     {
@@ -110,7 +110,13 @@ export default function ManageMooncakePage() {
       title: "链接",
       dataIndex: "link",
       render: (link: string) => (
-        <Text icon={<IconLink />} link={{ href: link, target: "_blank" }} underline>{link}</Text>
+        <Text
+          icon={<IconLink />}
+          link={{ href: link, target: "_blank" }}
+          underline
+        >
+          {link}
+        </Text>
       ),
     },
     {
@@ -157,6 +163,19 @@ export default function ManageMooncakePage() {
     },
   ];
 
+  return (
+    <>
+      <div className="my-4">
+        <Button theme="solid" type="primary">
+          新增
+        </Button>
+      </div>
+      <Table columns={typeColumns} dataSource={typeData} />
+    </>
+  );
+};
+
+const MouldTable: React.FC = () => {
   const mouldColumns = [
     {
       title: "ID",
@@ -176,10 +195,59 @@ export default function ManageMooncakePage() {
     },
     {
       title: "图片",
-      dataIndex: "img",
-      render: (link: string) => (
-        <Image src=""></Image>
+      dataIndex: "image",
+      render: (image: string, record: any) => (
+        <Image alt={record.name} src={image} width={100}></Image>
       ),
+    },
+    {
+      title: "操作",
+      width: 100,
+      render: (_text: any, record: any) => (
+        <ButtonGroup>
+          <Button icon={<IconEdit />} aria-label="编辑"></Button>
+          <Button icon={<IconDelete />} aria-label="删除"></Button>
+        </ButtonGroup>
+      ),
+    },
+  ];
+  const mouldData = [
+    {
+      id: 1,
+      name: "花1",
+      series: {
+        id: 1,
+        name: "花好月圆",
+      },
+      image:
+        "https://lf3-static.bytednsdoc.com/obj/eden-cn/ptlz_zlp/ljhwZthlaukjlkulzlp/root-web-sites/card-cover-docs-demo.jpeg",
+    },
+  ];
+
+  return (
+    <>
+      <div className="my-4">
+        <Button theme="solid" type="primary">
+          新增
+        </Button>
+      </div>
+      <Table columns={mouldColumns} dataSource={mouldData} />
+    </>
+  );
+};
+
+const MouldSeriesTable: React.FC = () => {
+  const mouldSeriesColumns = [
+    {
+      title: "ID",
+      dataIndex: "id",
+      width: 50,
+      fixed: true,
+    },
+    {
+      title: "名称",
+      dataIndex: "name",
+      fixed: true,
     },
     {
       title: "活动",
@@ -199,11 +267,10 @@ export default function ManageMooncakePage() {
       ),
     },
   ];
-  const mouldData = [
+  const mouldSeriesData = [
     {
       id: 1,
-      name: "花1",
-      link: "https://www.bilibili.com/video/BV1X341117FN/",
+      name: "花好月圆",
       activity: [
         {
           id: 1,
@@ -224,26 +291,33 @@ export default function ManageMooncakePage() {
       ],
     },
   ];
+  return (
+    <>
+      <div className="my-4">
+        <Button theme="solid" type="primary">
+          新增
+        </Button>
+      </div>
+      <Table columns={mouldSeriesColumns} dataSource={mouldSeriesData} />
+    </>
+  );
+};
+
+export default function ManageMooncakePage() {
+  const { Title } = Typography;
 
   return (
     <>
       <Title heading={2}>月饼管理</Title>
       <Tabs>
         <TabPane itemKey="1" tab="口味">
-          <div className="my-4">
-            <Button theme="solid" type="primary">
-              新增
-            </Button>
-          </div>
-          <Table columns={typeColumns} dataSource={typeData} />
+          <TypeTable></TypeTable>
         </TabPane>
         <TabPane itemKey="2" tab="模具">
-          <div className="my-4">
-            <Button theme="solid" type="primary">
-              新增
-            </Button>
-          </div>
-          <Table columns={mouldColumns} dataSource={mouldData} />
+          <MouldTable></MouldTable>
+        </TabPane>
+        <TabPane itemKey="3" tab="模具系列">
+          <MouldSeriesTable></MouldSeriesTable>
         </TabPane>
       </Tabs>
     </>
