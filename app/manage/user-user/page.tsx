@@ -1,6 +1,6 @@
 "use client";
 
-import { UserInfo, UserInfoFormatted } from "@/types/User";
+import { UserInfo, UserInfoFormatted } from "@/types/entity/User";
 import { IconDelete, IconEdit, IconMore } from "@douyinfe/semi-icons";
 import { Button, ButtonGroup, Table, Typography } from "@douyinfe/semi-ui";
 

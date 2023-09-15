@@ -1,6 +1,6 @@
 "use client";
 
-import { BakeInfo, BakeInfoFormatted, BakeMooncakeInfo } from "@/types/Bake";
+import { BakeInfo, BakeInfoFormatted, BakeMooncakeInfo } from "@/types/entity/Bake";
 import { IconDelete, IconEdit, IconPrint } from "@douyinfe/semi-icons";
 import {
   Button,

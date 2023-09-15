@@ -4,7 +4,7 @@ import {
   ActivityInfo,
   ActivityInfoFormatted,
   ActivityStatus,
-} from "@/types/Activity";
+} from "@/types/entity/Activity";
 import { IconDelete, IconEdit, IconLink, IconMore } from "@douyinfe/semi-icons";
 import {
   Button,

@@ -2,7 +2,7 @@
 
 import { MooncakeCard } from "@/components/MooncakeCard";
 import { UserHeaderContext } from "@/contexts/UserHeaderContext";
-import { SignupMooncakeInfo, SignupMooncakeMould, SignupMooncakeType } from "@/types/Mooncake";
+import { SignupMooncakeInfo, SignupMooncakeMould, SignupMooncakeType } from "@/types/entity/Mooncake";
 import {
   IconHash,
   IconIdentity,

@@ -4,7 +4,7 @@ import {
   SignupMooncakeMould,
   SignupMooncakeMouldSeries,
   SignupMooncakeType,
-} from "@/types/Mooncake";
+} from "@/types/entity/Mooncake";
 
 interface MooncakeCardProps {
   index: number;

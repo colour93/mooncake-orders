@@ -1,7 +1,7 @@
 "use client";
 
-import { OrderInfo, OrderInfoFormatted } from "@/types/Order";
-import { UserInfo, UserInfoFormatted } from "@/types/User";
+import { OrderInfo, OrderInfoFormatted } from "@/types/entity/Order";
+import { UserInfo, UserInfoFormatted } from "@/types/entity/User";
 import { IconDelete, IconEdit, IconMore } from "@douyinfe/semi-icons";
 import { Button, ButtonGroup, Table, Typography } from "@douyinfe/semi-ui";
 

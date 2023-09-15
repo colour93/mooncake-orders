@@ -3,9 +3,8 @@
 import {
   ActivityInfo,
   ActivityInfoFormatted,
-  ActivityStatus,
-} from "@/types/Activity";
-import { IconDelete, IconEdit, IconMore } from "@douyinfe/semi-icons";
+} from "@/types/entity/Activity";
+import { IconDelete, IconEdit } from "@douyinfe/semi-icons";
 import { Button, ButtonGroup, Table, Typography } from "@douyinfe/semi-ui";
 
 export default function ManageActivityPage() {
