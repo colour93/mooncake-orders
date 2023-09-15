@@ -1,17 +1,17 @@
 import { Card, InputGroup, Popover, Select } from "@douyinfe/semi-ui";
 import {
-  MooncakeInfo,
-  MooncakeMould,
-  MooncakeMouldSeries,
-  MooncakeType,
+  SignupMooncakeInfo,
+  SignupMooncakeMould,
+  SignupMooncakeMouldSeries,
+  SignupMooncakeType,
 } from "@/types/Mooncake";
 
 interface MooncakeCardProps {
   index: number;
-  mooncakeInfo: MooncakeInfo;
-  updateMooncakeInfo: (mooncakeInfo: MooncakeInfo, index: number) => void;
-  mooncakeTypes: MooncakeType[];
-  mooncakeMoulds: MooncakeMould[];
+  mooncakeInfo: SignupMooncakeInfo;
+  updateMooncakeInfo: (mooncakeInfo: SignupMooncakeInfo, index: number) => void;
+  mooncakeTypes: SignupMooncakeType[];
+  mooncakeMoulds: SignupMooncakeMould[];
   disabled?: boolean;
 }
 
@@ -26,7 +26,7 @@ const MooncakeCard: React.FC<MooncakeCardProps> = ({
   const { typeId, seriesId, mouldId } = mooncakeInfo;
 
   // 组织 series
-  const mooncakeMouldSeries: MooncakeMouldSeries[] = mooncakeMoulds.reduce(
+  const mooncakeMouldSeries: SignupMooncakeMouldSeries[] = mooncakeMoulds.reduce(
     (result, mould) => {
       const existingSeries = result.find(
         (series) => series.seriesId === mould.seriesId
@@ -52,7 +52,7 @@ const MooncakeCard: React.FC<MooncakeCardProps> = ({
 
       return result;
     },
-    [] as MooncakeMouldSeries[]
+    [] as SignupMooncakeMouldSeries[]
   );
 
   return (

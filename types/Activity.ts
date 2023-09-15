@@ -27,13 +27,20 @@ export class ActivityInfoFormatted implements ActivityInfo {
   upToTimeDate: Date;
   upToTimeString: string;
 
-  constructor(activityInfo: ActivityInfo) {
-    this.id = activityInfo.id;
-    this.name = activityInfo.name;
-    this.status = activityInfo.status;
-    this.orderCount = activityInfo.orderCount;
-    this.startTime = activityInfo.startTime;
-    this.upToTime = activityInfo.upToTime;
+  constructor({
+    id,
+    name,
+    status,
+    orderCount,
+    startTime,
+    upToTime,
+  }: ActivityInfo) {
+    this.id = id;
+    this.name = name;
+    this.status = status;
+    this.orderCount = orderCount;
+    this.startTime = startTime;
+    this.upToTime = upToTime;
 
     this.statusString = "未知状态";
     switch (this.status) {

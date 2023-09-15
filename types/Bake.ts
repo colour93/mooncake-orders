@@ -18,6 +18,7 @@ export interface BakeInfo {
   status: number;
   count: number;
   created: number;
+  baked?: number;
 }
 
 export class BakeInfoFormatted implements BakeInfo {
@@ -27,18 +28,22 @@ export class BakeInfoFormatted implements BakeInfo {
   status: number;
   count: number;
   created: number;
+  baked?: number;
 
   statusString: string;
   createdDate: Date;
   createdString: string;
+  bakedDate?: Date;
+  bakedString?: string;
 
-  constructor(bakeInfo: BakeInfo) {
-    this.id = bakeInfo.id;
-    this.type = bakeInfo.type;
-    this.activity = bakeInfo.activity;
-    this.status = bakeInfo.status;
-    this.count = bakeInfo.count;
-    this.created = bakeInfo.created;
+  constructor({ id, type, activity, status, count, created, baked }: BakeInfo) {
+    this.id = id;
+    this.type = type;
+    this.activity = activity;
+    this.status = status;
+    this.count = count;
+    this.created = created;
+    this.baked = baked;
 
     this.statusString = "未知状态";
     switch (this.status) {
@@ -64,29 +69,12 @@ export class BakeInfoFormatted implements BakeInfo {
 
     this.createdDate = new Date(this.created);
     this.createdString = this.createdDate.toLocaleString();
+
+    if (this.baked) {
+      this.bakedDate = new Date(this.baked);
+      this.bakedString = this.bakedDate.toLocaleString();
+    }
   }
 }
 
-export interface BakeMooncakeInfo {
-  id: number;
-  activity: {
-    id: number;
-    name: string;
-  };
-  user: {
-    id: number;
-    name: string;
-  };
-  type: {
-    id: number;
-    name: string;
-  };
-  mould: {
-    id: number;
-    name: string;
-    series: {
-      id: number;
-      name: string;
-    };
-  };
-}
+export interface BakeMooncakeInfo {}

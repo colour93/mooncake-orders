@@ -2,7 +2,7 @@
 
 import { MooncakeCard } from "@/components/MooncakeCard";
 import { UserHeaderContext } from "@/contexts/UserHeaderContext";
-import { MooncakeInfo, MooncakeMould, MooncakeType } from "@/types/Mooncake";
+import { SignupMooncakeInfo, SignupMooncakeMould, SignupMooncakeType } from "@/types/Mooncake";
 import { IconIdentity, IconUserCardPhone } from "@douyinfe/semi-icons";
 import {
   Form,
@@ -26,7 +26,7 @@ export default function OrderDetailPage({
   const { setHeader } = useContext(UserHeaderContext);
   setHeader && setHeader(title);
 
-  const [mooncakeTypes, setMooncakeTypes] = useState<MooncakeType[]>([
+  const [mooncakeTypes, setMooncakeTypes] = useState<SignupMooncakeType[]>([
     {
       typeId: 1,
       typeName: "奶香白豆沙",
@@ -49,7 +49,7 @@ export default function OrderDetailPage({
     },
   ]);
 
-  const [mooncakeMoulds, setMooncakeMoulds] = useState<MooncakeMould[]>([
+  const [mooncakeMoulds, setMooncakeMoulds] = useState<SignupMooncakeMould[]>([
     {
       mouldId: 1,
       mouldName: "花",
@@ -124,7 +124,7 @@ export default function OrderDetailPage({
     },
   ]);
 
-  const [mooncakeGroup, setMooncakeGroup] = useState<MooncakeInfo[]>([
+  const [mooncakeGroup, setMooncakeGroup] = useState<SignupMooncakeInfo[]>([
     {
       typeId: 1,
       seriesId: 1,
@@ -157,7 +157,7 @@ export default function OrderDetailPage({
     },
   ]);
 
-  const updateMooncakeGroup = (mooncakeInfo: MooncakeInfo, index: number) => {
+  const updateMooncakeGroup = (mooncakeInfo: SignupMooncakeInfo, index: number) => {
     let originMooncakeGroup = mooncakeGroup.slice();
     originMooncakeGroup[index] = mooncakeInfo;
     setMooncakeGroup(originMooncakeGroup);
