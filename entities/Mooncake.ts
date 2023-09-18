@@ -5,6 +5,7 @@ import {
   BeforeInsert,
   ManyToOne,
   JoinColumn,
+  BeforeUpdate,
 } from "typeorm";
 import { MooncakeMould } from "./MooncakeMould";
 import { MooncakeType } from "./MooncakeType";
@@ -42,14 +43,27 @@ export class Mooncake {
   @Column({ default: MooncakeStatus.CREATED })
   status!: MooncakeStatus;
 
-  @Column({ type: "datetime", precision: 6 })
+  @Column({ type: "timestamp", default: () => "CURRENT_TIMESTAMP" })
   baked?: Date;
 
-  @Column({ type: "datetime", precision: 6 })
+  @Column({
+    type: "timestamp",
+    default: () => "CURRENT_TIMESTAMP",
+    onUpdate: "CURRENT_TIMESTAMP",
+  })
+  updated!: Date;
+
+  @Column({ type: "timestamp", default: () => "CURRENT_TIMESTAMP" })
   created!: Date;
 
   @BeforeInsert()
   async preProcess() {
     this.created = new Date();
+    this.updated = new Date();
+  }
+
+  @BeforeUpdate()
+  beforeUpdate() {
+    this.updated = new Date();
   }
 }

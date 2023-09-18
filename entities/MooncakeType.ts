@@ -17,7 +17,7 @@ export class MooncakeType {
   @Column()
   link?: string;
 
-  @Column({ type: "datetime", precision: 6 })
+  @Column({ type: "timestamp", default: () => "CURRENT_TIMESTAMP" })
   created!: Date;
 
   @BeforeInsert()

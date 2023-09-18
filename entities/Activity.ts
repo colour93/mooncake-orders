@@ -1,10 +1,4 @@
-import {
-  Entity,
-  PrimaryGeneratedColumn,
-  Column,
-  BeforeInsert,
-  ManyToOne,
-} from "typeorm";
+import { Entity, PrimaryGeneratedColumn, Column, BeforeInsert } from "typeorm";
 
 export enum ActivityStatus {
   IN_PROGRESS = 1,
@@ -16,14 +10,11 @@ export class Activity {
   @PrimaryGeneratedColumn()
   id!: number;
 
-  @Column()
+  @Column({ unique: true })
   name!: string;
 
-  @Column()
-  status!: ActivityStatus;
-
-  // @ManyToOne()
-  // orders!:
+  // @Column({ default: ActivityStatus.IN_PROGRESS })
+  // status!: ActivityStatus;
 
   @Column({ type: "decimal", precision: 10, scale: 2, default: 20 })
   price!: number;
@@ -31,7 +22,7 @@ export class Activity {
   @Column({ type: "datetime", precision: 6, name: "end_time" })
   endTime!: Date;
 
-  @Column({ type: "datetime", precision: 6 })
+  @Column({ type: "timestamp", default: () => "CURRENT_TIMESTAMP" })
   created!: Date;
 
   @BeforeInsert()

@@ -11,7 +11,7 @@ export class ActivateCode {
   @Column({ default: false })
   used!: boolean;
 
-  @Column({ type: "datetime", precision: 6 })
+  @Column({ type: "timestamp", default: () => "CURRENT_TIMESTAMP" })
   created!: Date;
 
   @BeforeInsert()

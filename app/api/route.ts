@@ -5,7 +5,7 @@ import { ResponseCode } from "@/types/packet/Response";
 export function GET() {
   return NextResponse.json({
     code: ResponseCode.SUCCESS,
-    msg: "success",
+    msg: "操作成功",
     data: {
       version: packageJson.version,
     },

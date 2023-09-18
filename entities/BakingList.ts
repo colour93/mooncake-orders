@@ -22,7 +22,7 @@ export class BakingList {
   @JoinColumn()
   type!: MooncakeType;
 
-  @Column({ type: "datetime", precision: 6 })
+  @Column({ type: "timestamp", default: () => "CURRENT_TIMESTAMP" })
   created!: Date;
 
   @BeforeInsert()

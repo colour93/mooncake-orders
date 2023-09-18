@@ -4,7 +4,7 @@ import { ResponseCode } from "@/types/packet/Response";
 export function POST(req: NextRequest) {
   return NextResponse.json({
     code: ResponseCode.SUCCESS,
-    msg: "success",
+    msg: "操作成功",
     data: {},
   });
 }

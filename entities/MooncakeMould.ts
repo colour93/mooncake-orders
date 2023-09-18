@@ -20,7 +20,7 @@ export class MooncakeMould {
   @JoinColumn()
   series!: MooncakeMouldSeries;
 
-  @Column({ type: "datetime", precision: 6 })
+  @Column({ type: "timestamp", default: () => "CURRENT_TIMESTAMP" })
   created!: Date;
 
   @BeforeInsert()

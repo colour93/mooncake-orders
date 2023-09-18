@@ -68,16 +68,21 @@ export class Order {
   @Column({ name: "delivery_id" })
   deliveryId!: string;
 
-  @Column({ type: "datetime", precision: 6 })
+  @Column({ type: 'timestamp', default: () => 'CURRENT_TIMESTAMP', onUpdate: 'CURRENT_TIMESTAMP' })
+  updated!: Date;
+
+  @Column({ type: "timestamp", default: () => "CURRENT_TIMESTAMP" })
   created!: Date;
 
   @BeforeInsert()
   async preProcess() {
     this.created = new Date();
+    this.updated = new Date();
   }
 
   @BeforeUpdate()
-  calcCost() {
+  beforeUpdate() {
+    this.updated = new Date();
     this.cost = this.freight + this.price;
   }
 }
