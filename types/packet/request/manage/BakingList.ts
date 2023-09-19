@@ -49,3 +49,7 @@ export interface BakingListGenerateBody {
 }
 
 export class BakingListGenerate extends BakingListUpdate {}
+
+export interface BakingListPrintBody {
+  id: number;
+}
