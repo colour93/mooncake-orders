@@ -3,16 +3,17 @@ import { ResponseCode } from "@/types/packet/Response";
 import {
   ActivityUpdate,
   ActivityUpdateBody,
-} from "@/types/packet/request/manage/activity";
+} from "@/types/packet/request/manage/Activity";
 import { AppDataSource } from "@/data-source";
 import { Activity } from "@/entities/Activity";
+import { databaseErrorHandler } from "@/utils/errorHandler";
 
 const activityRepository = AppDataSource.getRepository(Activity);
 
 export async function POST(req: NextRequest) {
-  const body = (await req.json()) as ActivityUpdateBody;
-
+  
   try {
+    const body = (await req.json()) as ActivityUpdateBody;
     const result = await activityRepository.update(
       { id: body.id },
       body as ActivityUpdate
@@ -32,10 +33,6 @@ export async function POST(req: NextRequest) {
       data: {},
     });
   } catch (error: any) {
-    return NextResponse.json({
-      code: ResponseCode.INTERNAL_SERVER_ERROR,
-      msg: "未知错误",
-      data: error,
-    });
+    return NextResponse.json(databaseErrorHandler(error));
   }
 }

@@ -1,4 +1,13 @@
-import { Entity, PrimaryGeneratedColumn, Column, BeforeInsert } from "typeorm";
+import {
+  Entity,
+  PrimaryGeneratedColumn,
+  Column,
+  BeforeInsert,
+  ManyToMany,
+  JoinTable,
+} from "typeorm";
+import { MooncakeMouldSeries } from "./MooncakeMouldSeries";
+import { MooncakeType } from "./MooncakeType";
 
 export enum ActivityStatus {
   IN_PROGRESS = 1,
@@ -21,6 +30,17 @@ export class Activity {
 
   @Column({ type: "datetime", precision: 6, name: "end_time" })
   endTime!: Date;
+
+  @ManyToMany(
+    (type) => MooncakeMouldSeries,
+    (mooncakeMouldSeries) => mooncakeMouldSeries.activities
+  )
+  @JoinTable()
+  mooncakeMouldSeries?: MooncakeMouldSeries[];
+
+  @ManyToMany((type) => MooncakeType, (mooncakeType) => mooncakeType.activities)
+  @JoinTable()
+  mooncakeTypes?: MooncakeType[];
 
   @Column({ type: "timestamp", default: () => "CURRENT_TIMESTAMP" })
   created!: Date;

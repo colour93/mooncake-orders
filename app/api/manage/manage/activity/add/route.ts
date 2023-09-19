@@ -5,14 +5,15 @@ import { Activity } from "@/entities/Activity";
 import {
   ActivityAdd,
   ActivityAddBody,
-} from "@/types/packet/request/manage/activity";
+} from "@/types/packet/request/manage/Activity";
+import { databaseErrorHandler } from "@/utils/errorHandler";
 
 const activityRepository = AppDataSource.getRepository(Activity);
 
 export async function POST(req: NextRequest) {
-  const body = (await req.json()) as ActivityAddBody;
-
+  
   try {
+    const body = (await req.json()) as ActivityAddBody;
     const result = await activityRepository.save(new ActivityAdd(body));
     return NextResponse.json({
       code: ResponseCode.SUCCESS,
@@ -20,17 +21,6 @@ export async function POST(req: NextRequest) {
       data: result,
     });
   } catch (error: any) {
-    if (error.code == "ER_DUP_ENTRY") {
-      return NextResponse.json({
-        code: ResponseCode.CONFLICT,
-        msg: "字段不唯一",
-        data: error,
-      });
-    }
-    return NextResponse.json({
-      code: ResponseCode.INTERNAL_SERVER_ERROR,
-      msg: "未知错误",
-      data: error,
-    });
+    return NextResponse.json(databaseErrorHandler(error));
   }
 }

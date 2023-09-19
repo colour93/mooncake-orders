@@ -2,6 +2,7 @@ import { NextResponse } from "next/server";
 import { ResponseCode } from "@/types/packet/Response";
 import { AppDataSource } from "@/data-source";
 import { Activity } from "@/entities/Activity";
+import { databaseErrorHandler } from "@/utils/errorHandler";
 
 const activityRepository = AppDataSource.getRepository(Activity);
 
@@ -15,10 +16,6 @@ export async function GET() {
       data: result,
     });
   } catch (error: any) {
-    return NextResponse.json({
-      code: ResponseCode.INTERNAL_SERVER_ERROR,
-      msg: "未知错误",
-      data: error,
-    });
+    return NextResponse.json(databaseErrorHandler(error));
   }
 }

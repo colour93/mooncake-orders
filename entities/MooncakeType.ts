@@ -4,18 +4,23 @@ import {
   Column,
   BeforeInsert,
   ManyToOne,
+  ManyToMany,
 } from "typeorm";
+import { Activity } from "./Activity";
 
 @Entity()
 export class MooncakeType {
   @PrimaryGeneratedColumn()
   id!: number;
 
-  @Column()
+  @Column({ unique: true })
   name!: string;
 
   @Column()
   link?: string;
+
+  @ManyToMany((type) => Activity, (activity) => activity.mooncakeTypes)
+  activities?: Activity[];
 
   @Column({ type: "timestamp", default: () => "CURRENT_TIMESTAMP" })
   created!: Date;

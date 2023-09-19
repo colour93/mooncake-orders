@@ -16,6 +16,9 @@ export class MooncakeMould {
   @Column()
   name!: string;
 
+  @Column()
+  image?: string;
+
   @ManyToOne(() => MooncakeMouldSeries)
   @JoinColumn()
   series!: MooncakeMouldSeries;
