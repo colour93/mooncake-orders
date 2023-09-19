@@ -2,8 +2,6 @@ import { NextRequest, NextResponse } from "next/server";
 import { ResponseCode } from "@/types/packet/Response";
 import { AppDataSource } from "@/data-source";
 import { databaseErrorHandler } from "@/utils/errorHandler";
-import { MooncakeType } from "@/entities/MooncakeType";
-import { Activity } from "@/entities/Activity";
 import { BakingListPrintBody } from "@/types/packet/request/manage/BakingList";
 import { Mooncake, MooncakeStatus } from "@/entities/Mooncake";
 import { BakingList } from "@/entities/BakingList";
