@@ -6,7 +6,9 @@ import {
   ManyToOne,
   JoinColumn,
   BeforeUpdate,
+  Relation,
 } from "typeorm";
+import { BakingList } from "./BakingList";
 import { MooncakeMould } from "./MooncakeMould";
 import { MooncakeType } from "./MooncakeType";
 import { Activity } from "./Activity";
@@ -27,21 +29,24 @@ export class Mooncake {
 
   @ManyToOne(() => Activity)
   @JoinColumn()
-  activity!: Activity;
+  activity!: Relation<Activity>;
 
   @ManyToOne(() => MooncakeType)
   @JoinColumn()
-  type!: MooncakeType;
+  mooncakeType!: Relation<MooncakeType>;
 
   @ManyToOne(() => MooncakeMould)
   @JoinColumn()
-  mould!: MooncakeMould;
+  mooncakeMould!: Relation<MooncakeMould>;
 
   @ManyToOne(() => Order, (order) => order.mooncakes)
-  order!: Order;
+  order!: Relation<Order>;
 
   @Column({ default: MooncakeStatus.CREATED })
   status!: MooncakeStatus;
+
+  @ManyToOne(() => BakingList, (bakingList) => bakingList.mooncakes)
+  bakingList?: Relation<BakingList>;
 
   @Column({ type: "timestamp", default: () => "CURRENT_TIMESTAMP" })
   baked?: Date;

@@ -4,6 +4,7 @@ import {
   Column,
   BeforeInsert,
   ManyToMany,
+  Relation,
 } from "typeorm";
 import { Activity } from "./Activity";
 
@@ -16,7 +17,7 @@ export class MooncakeMouldSeries {
   name!: string;
 
   @ManyToMany((type) => Activity, (activity) => activity.mooncakeMouldSeries)
-  activities?: Activity[];
+  activities?: Relation<Activity[]>;
 
   @Column({ type: "timestamp", default: () => "CURRENT_TIMESTAMP" })
   created!: Date;

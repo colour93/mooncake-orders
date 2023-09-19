@@ -5,6 +5,7 @@ import {
   BeforeInsert,
   ManyToMany,
   JoinTable,
+  Relation,
 } from "typeorm";
 import { MooncakeMouldSeries } from "./MooncakeMouldSeries";
 import { MooncakeType } from "./MooncakeType";
@@ -36,11 +37,11 @@ export class Activity {
     (mooncakeMouldSeries) => mooncakeMouldSeries.activities
   )
   @JoinTable()
-  mooncakeMouldSeries?: MooncakeMouldSeries[];
+  mooncakeMouldSeries?: Relation<MooncakeMouldSeries[]>;
 
   @ManyToMany((type) => MooncakeType, (mooncakeType) => mooncakeType.activities)
   @JoinTable()
-  mooncakeTypes?: MooncakeType[];
+  mooncakeTypes?: Relation<MooncakeType[]>;
 
   @Column({ type: "timestamp", default: () => "CURRENT_TIMESTAMP" })
   created!: Date;

@@ -8,6 +8,7 @@ import {
 } from "@/types/packet/request/manage/MooncakeType";
 import { databaseErrorHandler } from "@/utils/errorHandler";
 import { Activity } from "@/entities/Activity";
+import { findNullIndexes } from "@/utils/utils";
 
 const activityRepository = AppDataSource.getRepository(Activity);
 const mooncakeTypeRepository = AppDataSource.getRepository(MooncakeType);
@@ -28,16 +29,16 @@ export async function POST(req: NextRequest) {
         )
       );
 
-      for (let i = 0; i < activities.length; i++) {
-        if (!activities[i])
-          return NextResponse.json({
-            code: ResponseCode.NOT_FOUND,
-            msg: "未找到活动",
-            data: {
-              id: body.activityIds[i],
-            },
-          });
-      }
+      const nullIndexes = findNullIndexes(activities);
+      if (nullIndexes.length != 0)
+        return NextResponse.json({
+          code: ResponseCode.NOT_FOUND,
+          msg: "未找到活动",
+          data: {
+            id: nullIndexes.map((index) => body.activityIds![index]),
+          },
+        });
+
 
       data.activities = activities as Activity[];
     }

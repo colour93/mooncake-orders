@@ -7,11 +7,11 @@ import {
   ManyToOne,
   JoinColumn,
   OneToMany,
+  Relation,
 } from "typeorm";
-import { MooncakeMould } from "./MooncakeMould";
-import { MooncakeType } from "./MooncakeType";
 import { Activity } from "./Activity";
 import { Mooncake } from "./Mooncake";
+import { User } from "./User";
 
 export enum OrderStatus {
   CREATED = 1,
@@ -26,17 +26,13 @@ export class Order {
   @PrimaryGeneratedColumn()
   id!: number;
 
+  @ManyToOne(() => User, (user) => user.orders)
+  @JoinColumn()
+  user!: Relation<User>;
+
   @ManyToOne(() => Activity)
   @JoinColumn()
   activity!: Activity;
-
-  @ManyToOne(() => MooncakeType)
-  @JoinColumn()
-  type!: MooncakeType;
-
-  @ManyToOne(() => MooncakeMould)
-  @JoinColumn()
-  mould!: MooncakeMould;
 
   @OneToMany(() => Mooncake, (mooncake) => mooncake.order)
   mooncakes?: Mooncake[];
@@ -68,7 +64,11 @@ export class Order {
   @Column({ name: "delivery_id" })
   deliveryId!: string;
 
-  @Column({ type: 'timestamp', default: () => 'CURRENT_TIMESTAMP', onUpdate: 'CURRENT_TIMESTAMP' })
+  @Column({
+    type: "timestamp",
+    default: () => "CURRENT_TIMESTAMP",
+    onUpdate: "CURRENT_TIMESTAMP",
+  })
   updated!: Date;
 
   @Column({ type: "timestamp", default: () => "CURRENT_TIMESTAMP" })

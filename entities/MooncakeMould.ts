@@ -5,6 +5,7 @@ import {
   BeforeInsert,
   ManyToOne,
   JoinColumn,
+  Relation,
 } from "typeorm";
 import { MooncakeMouldSeries } from "./MooncakeMouldSeries";
 
@@ -21,7 +22,7 @@ export class MooncakeMould {
 
   @ManyToOne(() => MooncakeMouldSeries)
   @JoinColumn()
-  series!: MooncakeMouldSeries;
+  series!: Relation<MooncakeMouldSeries>;
 
   @Column({ type: "timestamp", default: () => "CURRENT_TIMESTAMP" })
   created!: Date;

@@ -4,7 +4,9 @@ import {
   Column,
   BeforeInsert,
   OneToMany,
+  Relation,
 } from "typeorm";
+import { Order } from "./Order";
 
 export enum UserRole {
   COMMON = 1,
@@ -24,6 +26,9 @@ export class User {
 
   @Column({ default: UserRole.COMMON })
   role!: UserRole;
+
+  @OneToMany(() => Order, (order) => order.user)
+  orders?: Relation<Order[]>;
 
   @Column({ type: "timestamp", default: () => "CURRENT_TIMESTAMP" })
   created!: Date;
