@@ -1,32 +1,24 @@
-import {
-  Entity,
-  PrimaryGeneratedColumn,
-  Column,
-  BeforeInsert,
-  ManyToOne,
-  ManyToMany,
-  Relation,
-} from "typeorm";
+import * as typeorm from "typeorm";
 import { Activity } from "./Activity";
 
-@Entity()
+@typeorm.Entity()
 export class MooncakeType {
-  @PrimaryGeneratedColumn()
+  @typeorm.PrimaryGeneratedColumn()
   id!: number;
 
-  @Column({ unique: true })
+  @typeorm.Column({ unique: true })
   name!: string;
 
-  @Column()
+  @typeorm.Column()
   link?: string;
 
-  @ManyToMany((type) => Activity, (activity) => activity.mooncakeTypes)
-  activities?: Relation<Activity[]>;
+  @typeorm.ManyToMany((type) => Activity, (activity) => activity.mooncakeTypes)
+  activities?: typeorm.Relation<Activity[]>;
 
-  @Column({ type: "timestamp", default: () => "CURRENT_TIMESTAMP" })
+  @typeorm.Column({ type: "timestamp", default: () => "CURRENT_TIMESTAMP" })
   created!: Date;
 
-  @BeforeInsert()
+  @typeorm.BeforeInsert()
   async preProcess() {
     this.created = new Date();
   }

@@ -6,12 +6,12 @@ import { MooncakeMouldSeries } from "@/entities/MooncakeMouldSeries";
 import {
   MooncakeMouldSeriesUpdate,
   MooncakeMouldSeriesUpdateBody,
-} from "@/types/packet/request/manage/MooncakeMouldSeries";
+} from "@/types/packet/request/manage/manage/MooncakeMouldSeries";
 import { MooncakeMould } from "@/entities/MooncakeMould";
 import {
   MooncakeMouldUpdate,
   MooncakeMouldUpdateBody,
-} from "@/types/packet/request/manage/MooncakeMould";
+} from "@/types/packet/request/manage/manage/MooncakeMould";
 
 const mooncakeMouldSeriesRepository =
   AppDataSource.getRepository(MooncakeMouldSeries);

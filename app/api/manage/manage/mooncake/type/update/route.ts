@@ -6,7 +6,7 @@ import { MooncakeType } from "@/entities/MooncakeType";
 import {
   MooncakeTypeUpdate,
   MooncakeTypeUpdateBody,
-} from "@/types/packet/request/manage/MooncakeType";
+} from "@/types/packet/request/manage/manage/MooncakeType";
 import { Activity } from "@/entities/Activity";
 import { findNullIndexes } from "@/utils/utils";
 

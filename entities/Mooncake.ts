@@ -27,10 +27,6 @@ export class Mooncake {
   @PrimaryGeneratedColumn()
   id!: number;
 
-  @ManyToOne(() => Activity)
-  @JoinColumn()
-  activity!: Relation<Activity>;
-
   @ManyToOne(() => MooncakeType)
   @JoinColumn()
   mooncakeType!: Relation<MooncakeType>;

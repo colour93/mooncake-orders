@@ -6,7 +6,7 @@ import { MooncakeMould } from "@/entities/MooncakeMould";
 import {
   MooncakeMouldAdd,
   MooncakeMouldAddBody,
-} from "@/types/packet/request/manage/MooncakeMould";
+} from "@/types/packet/request/manage/manage/MooncakeMould";
 import { MooncakeMouldSeries } from "@/entities/MooncakeMouldSeries";
 
 const mooncakeMouldSeriesRepository =

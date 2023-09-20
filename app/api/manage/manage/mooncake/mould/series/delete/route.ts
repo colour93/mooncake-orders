@@ -3,7 +3,7 @@ import { ResponseCode } from "@/types/packet/Response";
 import { AppDataSource } from "@/data-source";
 import { databaseErrorHandler } from "@/utils/errorHandler";
 import { MooncakeMouldSeries } from "@/entities/MooncakeMouldSeries";
-import { MooncakeMouldSeriesDeleteBody } from "@/types/packet/request/manage/MooncakeMouldSeries";
+import { MooncakeMouldSeriesDeleteBody } from "@/types/packet/request/manage/manage/MooncakeMouldSeries";
 
 const mooncakeMouldSeriesRepository =
   AppDataSource.getRepository(MooncakeMouldSeries);

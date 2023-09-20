@@ -1,28 +1,21 @@
-import {
-  Entity,
-  PrimaryGeneratedColumn,
-  Column,
-  BeforeInsert,
-  ManyToMany,
-  Relation,
-} from "typeorm";
+import * as typeorm from "typeorm";
 import { Activity } from "./Activity";
 
-@Entity()
+@typeorm.Entity()
 export class MooncakeMouldSeries {
-  @PrimaryGeneratedColumn()
+  @typeorm.PrimaryGeneratedColumn()
   id!: number;
   
-  @Column()
+  @typeorm.Column()
   name!: string;
 
-  @ManyToMany((type) => Activity, (activity) => activity.mooncakeMouldSeries)
-  activities?: Relation<Activity[]>;
+  @typeorm.ManyToMany((type) => Activity, (activity) => activity.mooncakeMouldSeries)
+  activities?: typeorm.Relation<Activity[]>;
 
-  @Column({ type: "timestamp", default: () => "CURRENT_TIMESTAMP" })
+  @typeorm.Column({ type: "timestamp", default: () => "CURRENT_TIMESTAMP" })
   created!: Date;
 
-  @BeforeInsert()
+  @typeorm.BeforeInsert()
   async preProcess() {
     this.created = new Date();
   }

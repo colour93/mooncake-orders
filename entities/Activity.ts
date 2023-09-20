@@ -1,12 +1,4 @@
-import {
-  Entity,
-  PrimaryGeneratedColumn,
-  Column,
-  BeforeInsert,
-  ManyToMany,
-  JoinTable,
-  Relation,
-} from "typeorm";
+import * as typeorm from "typeorm";
 import { MooncakeMouldSeries } from "./MooncakeMouldSeries";
 import { MooncakeType } from "./MooncakeType";
 
@@ -15,38 +7,38 @@ export enum ActivityStatus {
   FINISHED = 2,
 }
 
-@Entity()
+@typeorm.Entity()
 export class Activity {
-  @PrimaryGeneratedColumn()
+  @typeorm.PrimaryGeneratedColumn()
   id!: number;
 
-  @Column({ unique: true })
+  @typeorm.Column({ unique: true })
   name!: string;
 
   // @Column({ default: ActivityStatus.IN_PROGRESS })
   // status!: ActivityStatus;
 
-  @Column({ type: "decimal", precision: 10, scale: 2, default: 20 })
+  @typeorm.Column({ type: "decimal", precision: 10, scale: 2, default: 20 })
   price!: number;
 
-  @Column({ type: "datetime", precision: 6, name: "end_time" })
+  @typeorm.Column({ type: "datetime", precision: 6, name: "end_time" })
   endTime!: Date;
 
-  @ManyToMany(
+  @typeorm.ManyToMany(
     (type) => MooncakeMouldSeries,
     (mooncakeMouldSeries) => mooncakeMouldSeries.activities
   )
-  @JoinTable()
-  mooncakeMouldSeries?: Relation<MooncakeMouldSeries[]>;
+  @typeorm.JoinTable()
+  mooncakeMouldSeries?: typeorm.Relation<MooncakeMouldSeries[]>;
 
-  @ManyToMany((type) => MooncakeType, (mooncakeType) => mooncakeType.activities)
-  @JoinTable()
-  mooncakeTypes?: Relation<MooncakeType[]>;
+  @typeorm.ManyToMany((type) => MooncakeType, (mooncakeType) => mooncakeType.activities)
+  @typeorm.JoinTable()
+  mooncakeTypes?: typeorm.Relation<MooncakeType[]>;
 
-  @Column({ type: "timestamp", default: () => "CURRENT_TIMESTAMP" })
+  @typeorm.Column({ type: "timestamp", default: () => "CURRENT_TIMESTAMP" })
   created!: Date;
 
-  @BeforeInsert()
+  @typeorm.BeforeInsert()
   async preProcess() {
     this.created = new Date();
   }

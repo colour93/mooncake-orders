@@ -1,14 +1,4 @@
-import {
-  Entity,
-  PrimaryGeneratedColumn,
-  Column,
-  BeforeInsert,
-  BeforeUpdate,
-  ManyToOne,
-  JoinColumn,
-  OneToMany,
-  Relation,
-} from "typeorm";
+import * as typeorm from "typeorm";
 import { Activity } from "./Activity";
 import { Mooncake } from "./Mooncake";
 import { User } from "./User";
@@ -21,68 +11,70 @@ export enum OrderStatus {
   DONE = 5,
 }
 
-@Entity()
+@typeorm.Entity()
 export class Order {
-  @PrimaryGeneratedColumn()
+  @typeorm.PrimaryGeneratedColumn()
   id!: number;
 
-  @ManyToOne(() => User, (user) => user.orders)
-  @JoinColumn()
-  user!: Relation<User>;
+  @typeorm.ManyToOne(() => User, (user) => user.orders)
+  @typeorm.JoinColumn()
+  user!: typeorm.Relation<User>;
 
-  @ManyToOne(() => Activity)
-  @JoinColumn()
-  activity!: Activity;
+  @typeorm.ManyToOne(() => Activity)
+  @typeorm.JoinColumn()
+  activity!: typeorm.Relation<Activity>;
 
-  @OneToMany(() => Mooncake, (mooncake) => mooncake.order)
-  mooncakes?: Mooncake[];
+  @typeorm.OneToMany(() => Mooncake, (mooncake) => mooncake.order)
+  mooncakes?: typeorm.Relation<Mooncake[]>;
 
-  @Column({ default: OrderStatus.CREATED })
+  @typeorm.Column({ default: OrderStatus.CREATED })
   status!: OrderStatus;
 
-  @Column({ type: "decimal", precision: 10, scale: 2, default: 10 })
+  @typeorm.Column({ type: "decimal", precision: 10, scale: 2, default: 15 })
   freight!: number;
 
-  @Column({ type: "decimal", precision: 10, scale: 2, default: 20 })
+  @typeorm.Column({ type: "decimal", precision: 10, scale: 2, default: 20 })
   price!: number;
 
-  @Column({ type: "decimal", precision: 10, scale: 2, default: 30 })
+  @typeorm.Column({ type: "decimal", precision: 10, scale: 2, default: 35 })
   cost!: number;
 
-  @Column({ default: false, name: "is_paid" })
+  @typeorm.Column({ default: false, name: "is_paid" })
   isPaid!: boolean;
 
-  @Column({ name: "delivery_phone" })
+  @typeorm.Column({ name: "delivery_phone" })
   deliveryPhone!: number;
 
-  @Column({ name: "delivery_address" })
+  @typeorm.Column({ name: "delivery_address" })
   deliveryAddress!: string;
 
-  @Column({ name: "delivery_name" })
+  @typeorm.Column({ name: "delivery_name" })
   deliveryName!: string;
 
-  @Column({ name: "delivery_id" })
-  deliveryId!: string;
+  @typeorm.Column({ name: "delivery_id", default: null })
+  deliveryId?: string;
 
-  @Column({
+  @typeorm.Column({
     type: "timestamp",
     default: () => "CURRENT_TIMESTAMP",
     onUpdate: "CURRENT_TIMESTAMP",
   })
   updated!: Date;
 
-  @Column({ type: "timestamp", default: () => "CURRENT_TIMESTAMP" })
+  @typeorm.Column({ type: "timestamp", default: () => "CURRENT_TIMESTAMP" })
   created!: Date;
 
-  @BeforeInsert()
+  @typeorm.BeforeInsert()
   async preProcess() {
     this.created = new Date();
     this.updated = new Date();
   }
 
-  @BeforeUpdate()
-  beforeUpdate() {
+  @typeorm.BeforeUpdate()
+  async beforeUpdate() {
     this.updated = new Date();
+    console.log(this.freight);
+    console.log(this.price);
     this.cost = this.freight + this.price;
   }
 }

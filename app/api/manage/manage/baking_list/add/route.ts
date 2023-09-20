@@ -9,7 +9,7 @@ import { BakingList } from "@/entities/BakingList";
 import {
   BakingListAdd,
   BakingListAddBody,
-} from "@/types/packet/request/manage/BakingList";
+} from "@/types/packet/request/manage/manage/BakingList";
 import { findNullIndexes } from "@/utils/utils";
 
 const activityRepository = AppDataSource.getRepository(Activity);

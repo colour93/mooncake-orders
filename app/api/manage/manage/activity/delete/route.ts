@@ -2,7 +2,7 @@ import { NextRequest, NextResponse } from "next/server";
 import { ResponseCode } from "@/types/packet/Response";
 import { AppDataSource } from "@/data-source";
 import { Activity } from "@/entities/Activity";
-import { ActivityDeleteBody } from "@/types/packet/request/manage/Activity";
+import { ActivityDeleteBody } from "@/types/packet/request/manage/manage/Activity";
 import { databaseErrorHandler } from "@/utils/errorHandler";
 
 const activityRepository = AppDataSource.getRepository(Activity);

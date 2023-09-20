@@ -5,7 +5,7 @@ import { MooncakeType } from "@/entities/MooncakeType";
 import {
   MooncakeTypeAdd,
   MooncakeTypeAddBody,
-} from "@/types/packet/request/manage/MooncakeType";
+} from "@/types/packet/request/manage/manage/MooncakeType";
 import { databaseErrorHandler } from "@/utils/errorHandler";
 import { Activity } from "@/entities/Activity";
 import { findNullIndexes } from "@/utils/utils";

@@ -5,7 +5,7 @@ import { Activity } from "@/entities/Activity";
 import {
   ActivityAdd,
   ActivityAddBody,
-} from "@/types/packet/request/manage/Activity";
+} from "@/types/packet/request/manage/manage/Activity";
 import { databaseErrorHandler } from "@/utils/errorHandler";
 
 const activityRepository = AppDataSource.getRepository(Activity);

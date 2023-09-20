@@ -3,7 +3,7 @@ import { ResponseCode } from "@/types/packet/Response";
 import {
   ActivityUpdate,
   ActivityUpdateBody,
-} from "@/types/packet/request/manage/Activity";
+} from "@/types/packet/request/manage/manage/Activity";
 import { AppDataSource } from "@/data-source";
 import { Activity } from "@/entities/Activity";
 import { databaseErrorHandler } from "@/utils/errorHandler";

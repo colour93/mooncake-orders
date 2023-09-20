@@ -8,7 +8,7 @@ import { findNullIndexes } from "@/utils/utils";
 import {
   BakingListUpdate,
   BakingListUpdateBody,
-} from "@/types/packet/request/manage/BakingList";
+} from "@/types/packet/request/manage/manage/BakingList";
 import { Mooncake } from "@/entities/Mooncake";
 import { BakingList } from "@/entities/BakingList";
 

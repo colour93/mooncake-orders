@@ -6,7 +6,7 @@ import { MooncakeMouldSeries } from "@/entities/MooncakeMouldSeries";
 import {
   MooncakeMouldSeriesAdd,
   MooncakeMouldSeriesAddBody,
-} from "@/types/packet/request/manage/MooncakeMouldSeries";
+} from "@/types/packet/request/manage/manage/MooncakeMouldSeries";
 import { Activity } from "@/entities/Activity";
 
 const activityRepository = AppDataSource.getRepository(Activity);

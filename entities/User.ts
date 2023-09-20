@@ -1,11 +1,4 @@
-import {
-  Entity,
-  PrimaryGeneratedColumn,
-  Column,
-  BeforeInsert,
-  OneToMany,
-  Relation,
-} from "typeorm";
+import * as typeorm from "typeorm";
 import { Order } from "./Order";
 
 export enum UserRole {
@@ -13,27 +6,27 @@ export enum UserRole {
   MANAGER = 2,
 }
 
-@Entity()
+@typeorm.Entity()
 export class User {
-  @PrimaryGeneratedColumn()
+  @typeorm.PrimaryGeneratedColumn()
   id!: number;
 
-  @Column()
+  @typeorm.Column({ unique: true })
   email!: string;
 
-  @Column()
+  @typeorm.Column()
   name!: string;
 
-  @Column({ default: UserRole.COMMON })
+  @typeorm.Column({ default: UserRole.COMMON })
   role!: UserRole;
 
-  @OneToMany(() => Order, (order) => order.user)
-  orders?: Relation<Order[]>;
+  @typeorm.OneToMany(() => Order, (order) => order.user)
+  orders?: typeorm.Relation<Order[]>;
 
-  @Column({ type: "timestamp", default: () => "CURRENT_TIMESTAMP" })
+  @typeorm.Column({ type: "timestamp", default: () => "CURRENT_TIMESTAMP" })
   created!: Date;
 
-  @BeforeInsert()
+  @typeorm.BeforeInsert()
   async preProcess() {
     this.created = new Date();
   }

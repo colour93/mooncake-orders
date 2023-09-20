@@ -3,7 +3,7 @@ import { ResponseCode } from "@/types/packet/Response";
 import { AppDataSource } from "@/data-source";
 import { databaseErrorHandler } from "@/utils/errorHandler";
 import { BakingList } from "@/entities/BakingList";
-import { BakingListDeleteBody } from "@/types/packet/request/manage/BakingList";
+import { BakingListDeleteBody } from "@/types/packet/request/manage/manage/BakingList";
 
 const bakingListRepository = AppDataSource.getRepository(BakingList);
 

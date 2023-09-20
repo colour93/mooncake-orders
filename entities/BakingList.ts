@@ -1,38 +1,29 @@
-import {
-  Entity,
-  PrimaryGeneratedColumn,
-  Column,
-  BeforeInsert,
-  ManyToOne,
-  OneToMany,
-  JoinColumn,
-  Relation,
-} from "typeorm";
+import * as typeorm from "typeorm";
 import { Activity } from "./Activity";
 import { MooncakeType } from "./MooncakeType";
 import { Mooncake } from "./Mooncake";
 
-@Entity()
+@typeorm.Entity()
 export class BakingList {
-  @PrimaryGeneratedColumn()
+  @typeorm.PrimaryGeneratedColumn()
   id!: number;
 
-  @ManyToOne(() => Activity)
-  @JoinColumn()
-  activity!: Relation<Activity>;
+  @typeorm.ManyToOne(() => Activity)
+  @typeorm.JoinColumn()
+  activity!: typeorm.Relation<Activity>;
 
-  @ManyToOne(() => MooncakeType)
-  @JoinColumn()
-  mooncakeType!: Relation<MooncakeType>;
+  @typeorm.ManyToOne(() => MooncakeType)
+  @typeorm.JoinColumn()
+  mooncakeType!: typeorm.Relation<MooncakeType>;
 
-  @OneToMany(() => Mooncake, (mooncake) => mooncake.bakingList)
-  @JoinColumn()
-  mooncakes?: Relation<Mooncake[]>;
+  @typeorm.OneToMany(() => Mooncake, (mooncake) => mooncake.bakingList)
+  @typeorm.JoinColumn()
+  mooncakes?: typeorm.Relation<Mooncake[]>;
 
-  @Column({ type: "timestamp", default: () => "CURRENT_TIMESTAMP" })
+  @typeorm.Column({ type: "timestamp", default: () => "CURRENT_TIMESTAMP" })
   created!: Date;
 
-  @BeforeInsert()
+  @typeorm.BeforeInsert()
   async preProcess() {
     this.created = new Date();
   }
