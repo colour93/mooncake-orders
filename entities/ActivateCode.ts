@@ -1,20 +1,25 @@
-import { Entity, PrimaryGeneratedColumn, Column, BeforeInsert } from "typeorm";
+import * as typeorm from "typeorm";
+import { Activity } from "./Activity";
 
-@Entity()
+@typeorm.Entity()
 export class ActivateCode {
-  @PrimaryGeneratedColumn()
+  @typeorm.PrimaryGeneratedColumn()
   id!: number;
 
-  @Column({ unique: true })
+  @typeorm.Column({ unique: true })
   code!: string;
 
-  @Column({ default: false })
+  @typeorm.Column({ default: false })
   used!: boolean;
 
-  @Column({ type: "timestamp", default: () => "CURRENT_TIMESTAMP" })
+  @typeorm.ManyToOne(() => Activity)
+  @typeorm.JoinColumn()
+  activity!: typeorm.Relation<Activity>;
+
+  @typeorm.Column({ type: "timestamp", default: () => "CURRENT_TIMESTAMP" })
   created!: Date;
 
-  @BeforeInsert()
+  @typeorm.BeforeInsert()
   async preProcess() {
     this.created = new Date();
   }

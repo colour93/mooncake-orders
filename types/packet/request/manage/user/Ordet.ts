@@ -3,8 +3,8 @@ import { OrderStatus } from "@/entities/Order";
 import { User } from "@/entities/User";
 
 export interface OrderAddBody {
-  userId: number;
-  activityId: number;
+  userId?: number;
+  activityId?: number;
   deliveryPhone: number;
   deliveryAddress: string;
   deliveryName: string;
